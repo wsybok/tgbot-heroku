@@ -1,5 +1,5 @@
 from flask import Flask, request
-from telegram.ext import Updater, CommandHandler, MessageHandler, filters, Dispatcher
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Dispatcher
 from telegram import Bot, Update, ParseMode
 import os
 
@@ -22,7 +22,7 @@ def main():
     # Add command handlers
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("test", test))  # Add the test command handler
-    dispatcher.add_handler(MessageHandler(filters.status_update.new_chat_members, welcome))
+    dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, welcome))
 
     # Start the webhook
     bot.set_webhook("https://welbot-157d47a7fe95.herokuapp.com/" + TOKEN)
