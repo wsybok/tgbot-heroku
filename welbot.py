@@ -1,35 +1,27 @@
-from flask import Flask, request
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Dispatcher
-from telegram import Bot, Update, ParseMode
+from telegram import Update, Bot
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 import os
+import asyncio
 
-app = Flask(__name__)
+async def start(update: Update, context):
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="Hello! Welcome to the group.")
 
-# Existing code ...
+async def welcome(update: Update, context):
+    for member in update.message.new_chat_members:
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=f"Welcome, {member.full_name}!")
 
-def test(update, context):
-    update.message.reply_text("Test successful! The bot is working.")
+async def main():
+    TOKEN = os.environ.get("TELEGRAM_TOKEN")  # Ensure TOKEN is set in your environment variables
 
-def main():
-    global bot
-    global TOKEN
-    global dispatcher
+    application = Application.builder().token(TOKEN).build()
 
-    TOKEN = os.environ.get("TELEGRAM_TOKEN", "YOUR_FALLBACK_TOKEN")  # Get token from environment variable
-    bot = Bot(TOKEN)
-    dispatcher = Dispatcher(bot, None, workers=0)
+    start_handler = CommandHandler("start", start)
+    welcome_handler = MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome)
 
-    # Add command handlers
-    dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(CommandHandler("test", test))  # Add the test command handler
-    dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, welcome))
+    application.add_handler(start_handler)
+    application.add_handler(welcome_handler)
 
-    # Start the webhook
-    bot.set_webhook("https://welbot-157d47a7fe95.herokuapp.com/" + TOKEN)
+    await application.run_polling()
 
-    # Existing code ...
-
-if __name__ == '__main__':
-    main()
-    app.run(threaded=True)
-
+if __name__ == "__main__":
+    asyncio.run(main())
