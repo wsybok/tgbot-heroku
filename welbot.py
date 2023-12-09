@@ -1,27 +1,14 @@
-from telegram import Update, Bot
-from telegram.ext import Application, CommandHandler, MessageHandler, filters
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import os
-import asyncio
 
-async def start(update: Update, context):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Hello! Welcome to the group.")
+async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(f'Hello {update.effective_user.first_name}')
 
-async def welcome(update: Update, context):
-    for member in update.message.new_chat_members:
-        await context.bot.send_message(chat_id=update.effective_chat.id, text=f"Welcome, {member.full_name}!")
 
-async def main():
-    TOKEN = os.environ.get("TELEGRAM_TOKEN")  # Ensure TOKEN is set in your environment variables
+# Get the token from an environment variable
+TOKEN = os.environ.get("TELEGRAM_TOKEN")
 
-    application = Application.builder().token(TOKEN).build()
+app.add_handler(CommandHandler("hello", hello))
 
-    start_handler = CommandHandler("start", start)
-    welcome_handler = MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome)
-
-    application.add_handler(start_handler)
-    application.add_handler(welcome_handler)
-
-    await application.run_polling()
-
-if __name__ == "__main__":
-    asyncio.run(main())
+app.run_polling()
