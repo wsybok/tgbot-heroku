@@ -36,7 +36,7 @@ def main():
     dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, welcome))
 
     # Start the webhook
-    bot.set_webhook("https://your-app-name.herokuapp.com/" + TOKEN)
+    bot.set_webhook("https://welbot-157d47a7fe95.herokuapp.com/" + TOKEN)
 
 if __name__ == '__main__':
     main()
