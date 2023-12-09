@@ -8,6 +8,7 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 # Get the token from an environment variable
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
+app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("hello", hello))
 
