@@ -126,12 +126,7 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     if not was_member and is_member:
         await update.effective_chat.send_message(
-            f"{member_name} Welcome aboard!
-                            TypoGraphy AI app: Excited to see you explore and create with our app!
-                             Official Twitter:  Follow us for the latest updates and news.
-                             Share your thoughts and ask questions:  Your insights and inquiries are valuable to us!
-                             Questions or need Support: 🛠️ We're here to help you every step of the way.
-                             Please NOTICE: We will NEVER DM you first!  Stay safe and informed.",
+            f"{member_name} 🌟 Welcome aboard! 🌟",
             parse_mode=ParseMode.HTML,
         )
     elif was_member and not is_member:
