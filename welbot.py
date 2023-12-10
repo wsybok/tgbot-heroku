@@ -1,5 +1,6 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Dispatcher
+import asyncio
 import os
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -11,13 +12,18 @@ TOKEN = os.environ.get("TELEGRAM_TOKEN")
 # Your webhook URL
 WEBHOOK_URL = f'https://tg.typetop.xyz/{TOKEN}'
 
-async def set_webhook(app: ApplicationBuilder):
-    # Set webhook
-    await app.bot.set_webhook(WEBHOOK_URL)
+async def main():
+    # Create the Application and pass it your bot's token.
+    application = ApplicationBuilder().token(TOKEN).build()
 
-app = ApplicationBuilder().token(TOKEN).build()
+    # Add command handler
+    application.add_handler(CommandHandler("hello", hello))
 
-app.add_handler(CommandHandler("hello", hello))
+    # Set up the webhook
+    await application.bot.set_webhook(WEBHOOK_URL)
 
-# Run the webhook setup function
-app.run(set_webhook(app))
+    # Start the bot
+    await application.run_polling()
+
+if __name__ == '__main__':
+    asyncio.run(main())
