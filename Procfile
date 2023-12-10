@@ -1,1 +1,1 @@
-worker: python welbot.py
+web: python welbot.py
