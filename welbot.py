@@ -22,7 +22,7 @@ async def main():
     # Set up the webhook
     await application.bot.set_webhook(WEBHOOK_URL)
 
-    # Start the bot
+    # Run the bot
     await application.run_polling()
 
 if __name__ == '__main__':
