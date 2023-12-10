@@ -25,7 +25,7 @@ async def main():
     # Run the webhook server
     await application.run_webhook(
         listen="0.0.0.0",
-        port=int(os.environ.get('PORT', 8443)),
+        port=int(os.environ.get('PORT', 80)),
         url_path=TOKEN,
         webhook_url=WEBHOOK_URL
     )
