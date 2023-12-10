@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Dispatcher
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import asyncio
 import os
 
