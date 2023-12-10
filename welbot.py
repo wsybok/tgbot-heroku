@@ -22,8 +22,13 @@ async def main():
     # Set up the webhook
     await application.bot.set_webhook(WEBHOOK_URL)
 
-    # Run the bot
-    await application.run_polling()
+    # Run the webhook server
+    await application.run_webhook(
+        listen="0.0.0.0",
+        port=int(os.environ.get('PORT', 8443)),
+        url_path=TOKEN,
+        webhook_url=WEBHOOK_URL
+    )
 
 if __name__ == '__main__':
     asyncio.run(main())
