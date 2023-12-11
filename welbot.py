@@ -127,9 +127,13 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     if not was_member and is_member:
         keyboard = [
-            [InlineKeyboardButton("🌐TypoGraphy Website", url="http://typox.ai")],
-            [InlineKeyboardButton("❓Contact Support", url='http://t.me/muteturvita')],
-            [InlineKeyboardButton("🐦Follow us on X", url="https://twitter.com/TypoX_AI")]
+            [InlineKeyboardButton("🌐TypoGraphy Website", url="http://typox.ai"),
+             InlineKeyboardButton("❓Contact Support", url='http://t.me/muteturvita')
+            ],
+            
+            [InlineKeyboardButton("🐦Follow us on X", url="https://twitter.com/TypoX_AI"),
+             InlineKeyboardButton("🐦Follow us on X", url="https://twitter.com/TypoX_AI")
+            ]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
