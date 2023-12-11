@@ -131,9 +131,6 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
             reply_markup=reply_markup
 
         )
-        )
-
-
 
 def main() -> None:
     """Start the bot."""
