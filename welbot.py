@@ -66,36 +66,6 @@ async def track_chats(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     # Let's check who is responsible for the change
     cause_name = update.effective_user.full_name
 
-    # Handle chat types differently:
-    chat = update.effective_chat
-    if chat.type == Chat.PRIVATE:
-        if not was_member and is_member:
-            # This may not be really needed in practice because most clients will automatically
-            # send a /start command after the user unblocks the bot, and start_private_chat()
-            # will add the user to "user_ids".
-            # We're including this here for the sake of the example.
-            logger.info("%s unblocked the bot", cause_name)
-            context.bot_data.setdefault("user_ids", set()).add(chat.id)
-        elif was_member and not is_member:
-            logger.info("%s blocked the bot", cause_name)
-            context.bot_data.setdefault("user_ids", set()).discard(chat.id)
-    elif chat.type in [Chat.GROUP, Chat.SUPERGROUP]:
-        if not was_member and is_member:
-            logger.info("%s added the bot to the group %s", cause_name, chat.title)
-            context.bot_data.setdefault("group_ids", set()).add(chat.id)
-        elif was_member and not is_member:
-            logger.info("%s removed the bot from the group %s", cause_name, chat.title)
-            context.bot_data.setdefault("group_ids", set()).discard(chat.id)
-    elif not was_member and is_member:
-        logger.info("%s added the bot to the channel %s", cause_name, chat.title)
-        context.bot_data.setdefault("channel_ids", set()).add(chat.id)
-    elif was_member and not is_member:
-        logger.info("%s removed the bot from the channel %s", cause_name, chat.title)
-        context.bot_data.setdefault("channel_ids", set()).discard(chat.id)
-
-
-
-
 async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Greets new users in chats and announces when someone leaves"""
     result = extract_status_change(update.chat_member)
