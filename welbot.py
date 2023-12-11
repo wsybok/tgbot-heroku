@@ -135,12 +135,16 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
         reply_markup = InlineKeyboardMarkup(keyboard)
         
         # URL of your product website
-        product_website_url = "https://t.me/TypoGraphyAI/1/8024"
+        Typo20_url = "https://t.me/TypoGraphyAI/1/8024"
+        Search_url = "https://t.me/TypoGraphyAI/1/8400"
+        AI_url = "https://t.me/TypoGraphyAI/1/8164"
         
         await update.effective_chat.send_message(
             f"🌟 <b>{member_name} Welcome aboard TypoGraphy AI!</b> 🌟\n\n"
             f"🧭 <b>Quick Navigation:</b> \n\n"
-            f"1️⃣ <a href='{product_website_url}'>TypoGraphy AI 2.0</a>\n\n"
+            f"1️⃣ <a href='{Typo20_url}'>TypoGraphy AI 2.0</a>👈\n\n"
+            f"2️⃣ <a href='{Search_url}'>Search, Quote, & Share Features</a>👈\n\n"
+            f"3️⃣ <a href='{AI_url}'>AI + Web3 Products Comparative Analysis</a>👈\n\n"
             f"🚨 <b>Please NOTICE:</b> We will NEVER DM you first! 🛑 Stay safe and informed.",
             parse_mode=ParseMode.HTML,
             reply_markup=reply_markup
