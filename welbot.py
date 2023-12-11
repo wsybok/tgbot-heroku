@@ -137,7 +137,9 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
         
         await update.effective_chat.send_message(
             f"🌟 <b>{member_name} Welcome aboard TypoGraphy AI!</b> 🌟\n\n"
-            f"💬 <b>Share your thoughts with us!</b> 🤔 \n\n"
+            f"🧭 <b>Quick Navigation:</b> \n\n"
+            f"🧭 <b>TypoGraphy AI 2.0:</b> <a href='{product_website_url}'>Product Website</a>\n\n" 
+
             f"🚨 <b>Please NOTICE:</b> We will NEVER DM you first! 🛑 Stay safe and informed.",
             parse_mode=ParseMode.HTML,
             reply_markup=reply_markup
