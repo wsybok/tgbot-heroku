@@ -127,18 +127,15 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     if not was_member and is_member:
         keyboard = [
-            [InlineKeyboardButton("Visit Our Website", url="http://typox.ai")],
-            [InlineKeyboardButton("Contact Support", callback_data='contact_support')],
-            [InlineKeyboardButton("Join Our Channel", url="http://telegram.me/examplechannel")]
+            [InlineKeyboardButton("🌐TypoGraphy Website", url="http://typox.ai")],
+            [InlineKeyboardButton("❓Contact Support", callback_data='contact_support')],
+            [InlineKeyboardButton("🐦Follow us on X", url="https://twitter.com/TypoX_AI")]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
         await update.effective_chat.send_message(
             f"🌟 <b>@{member_name} Welcome aboard TypoGraphy AI!</b> 🌟\n\n"
             f"💬 <b>Share your thoughts with us!</b> 🤔 \n\n"
-            f"❓ <b>Questions or need Support:</b> 🛠️ \n\n"
-            f"📱 <b>TypoGraphy AI app:</b> 🤖 Excited to see you explore and create with our app!\n\n"
-            f"🐦 <b>Official Twitter:</b> 🌐 Follow us for the latest updates and news.\n\n"
             f"🚨 <b>Please NOTICE:</b> We will NEVER DM you first! 🛑 Stay safe and informed.",
             parse_mode=ParseMode.HTML,
             reply_markup=reply_markup
