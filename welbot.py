@@ -138,7 +138,7 @@ async def greet_chat_members(update: Update, context: ContextTypes.DEFAULT_TYPE)
         reply_markup = InlineKeyboardMarkup(keyboard)
         
         await update.effective_chat.send_message(
-            f"🌟 <b>@{username} Welcome aboard TypoGraphy AI!</b> 🌟\n\n"
+            f"🌟 <b>{@member_name} Welcome aboard TypoGraphy AI!</b> 🌟\n\n"
             f"💬 <b>Share your thoughts with us!</b> 🤔 \n\n"
             f"🚨 <b>Please NOTICE:</b> We will NEVER DM you first! 🛑 Stay safe and informed.",
             parse_mode=ParseMode.HTML,
